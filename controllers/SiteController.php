@@ -31,18 +31,14 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
         ];
     }
 
     public function renderComponent($component)
     {
-        $new = new View;
+        $view = new View;
 
-        return $new->renderFile(Yii::getAlias('@components').$component.'.php');
+        return $view->renderFile(Yii::getAlias('@components').$component.'.php');
     }
 
     public function queryData()
@@ -63,5 +59,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index', ['data' => $this->getData()]);
+    }
+
+    public function actionDashboard()
+    {
+        return $this->render('dashboard');
     }
 }
