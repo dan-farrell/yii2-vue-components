@@ -5,28 +5,42 @@ use \yii\web\JsExpression;
 
 $this->title = 'Yii Vue App';
 
+$color = 'blue';
+
 ?>
 
 <?php Vue::begin([
     'id' => 'vue-app',
     'data' => [
         'message' => 'Hello Vue!',
-        'cards' => $data
+        'cards' => $data,
+        'color' => $color
     ],
     'methods' => [
-        'reverseMessage' => new JsExpression("function() {this.message = this.message.split('').reverse().join('')}")
+        'helloWorld' => new JsExpression("function(color) {
+            console.log(color);
+        }")
     ]
 ]); ?>
 
-<div clas="row">
-    <div class="col-md-12">
+<div clas="[ row ]">
+    <div class="[ col-md-12 ]">
         <p>{{ message }}</p>
-        <button class="btn btn-primary" v-on:click="reverseMessage">Reverse Message</button>
+
+        <button
+            class="[ btn btn-primary ]"
+            v-on:click="helloWorld(color)"
+        >
+            Console Log
+        </button>
     </div>
 </div>
 
-<div clas="row">
-    <div class="col-md-3" v-for="card in cards">
+<div clas="[ row ]">
+    <div
+        class="[ col-md-3 ]"
+        v-for="card in cards"
+    >
         <?= $this->context->renderComponent('Card'); ?>
     </div>
 </div>
