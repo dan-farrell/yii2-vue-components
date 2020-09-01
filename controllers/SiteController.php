@@ -58,7 +58,9 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index', ['data' => $this->getData()]);
+        return $this->render('index', [
+            'data' => $this->getData()
+        ]);
     }
 
     public function actionDashboard()
